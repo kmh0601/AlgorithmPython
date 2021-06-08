@@ -1,2 +1,2 @@
-DFS = 35
+DFS = 365
 print(DFS)
