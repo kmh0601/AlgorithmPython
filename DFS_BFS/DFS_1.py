@@ -9,6 +9,13 @@ def DFS(visited,x,y,ice):
         # 아래쪽으로 탐색
         if x+1 < N:
             DFS(visited,x+1,y,ice)
+        '''
+        if y-1 > -1:
+            DFS(visited,x,y-1,ice)
+        if x-1 > -1:
+            DFS(visited,x-1,y,ice)
+        '''
+        #웬만하면 상하좌우를 다 체크하자
 
 
 Visited = [[False for _ in range(M)]for _ in range(N)]
