@@ -15,7 +15,14 @@ def Cal(n):
 
 
 while n != 1:
-    n = min(Cal(n),Cal(n-1))
-    count += 1
+    if n == 2:
+        count+=1
+        break
+    elif Cal(n-1) < Cal(n):
+        n = Cal(n-1)
+        count += 2
+    elif Cal(n-1) >= Cal(n):
+        n = Cal(n)
+        count += 1
 
 print(count)
