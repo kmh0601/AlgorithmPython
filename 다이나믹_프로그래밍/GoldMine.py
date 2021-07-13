@@ -1,5 +1,6 @@
 # T => 반복 횟수
 T = int(input())
+result = []
 
 # T번 반복한다
 for i in range(T):
@@ -10,7 +11,7 @@ for i in range(T):
     temp = list(map(int, input().split()))
     array = []
     for i in range(n):
-        array.append(temp[m*i:m*(i+1)])
+        array.append(temp[m*i:m*(i+1)]) # 슬라이싱은 새로운 리스트 객체를 반환한다
         '''
         한 줄로 입력되는 것을 이중리스트로 저장하려면 우선 리스트로 만들고 슬라이싱을 통해 이중 리스트로 append 해준다.
         이때, n*m 리스트로 만들려면 슬라이싱을 arr[i*m:(i+1)*m] => i 는 0에서n-1까지 한다.
@@ -25,15 +26,18 @@ for i in range(T):
     for j in range(m):
         for i in range(n):
             if j-1 >= 0:
-                Gold[i][j] = max(Gold[i][j], Gold[i][j-1]) + array[i][j]
+                Gold[i][j] = max(Gold[i][j], Gold[i][j-1] + array[i][j])
                 if i-1 >= 0:
-                    Gold[i][j] = max(Gold[i][j], Gold[i-1][j-1]) + array[i][j]
-                if i+1 < n:
-                    Gold[i][j] = max(Gold[i][j], Gold[i+1][j-1]) + array[i][j]
+                    Gold[i][j] = max(Gold[i][j], Gold[i-1][j-1] + array[i][j])
+                if i+1 <= n-1:
+                    Gold[i][j] = max(Gold[i][j], Gold[i+1][j-1] + array[i][j])
             else:
                 Gold[i][j] = Gold[i][j] + array[i][j]
 
-    result = 0
+    sum = 0
     for i in range(n):
-        result = max(result, Gold[i][m-1])
-    print(result)
+        sum = max(sum, Gold[i][m-1])
+    result.append(sum)
+
+for i in result:
+    print(i, end=' ')
